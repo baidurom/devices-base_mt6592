@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mmswidget_utils_hight">132.0px</dimen>
+    <dimen name="mmswidget_utils_width">134.0px</dimen>
+    <dimen name="mmswidget_utils_photo_inner_paddingleft">14.0dip</dimen>
+    <dimen name="mmswidget_utils_photo_inner_paddingtop">27.0px</dimen>
+    <dimen name="mmswidget_setting_anim_height">255.0dip</dimen>
+    <dimen name="bookmarkwidget_anim_height">268.0dip</dimen>
+    <dimen name="contactwidget_anim_height">268.0dip</dimen>
+</resources>

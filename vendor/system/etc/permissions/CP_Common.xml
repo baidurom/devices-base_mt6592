@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions> 
+    <library name="common"
+            file="/system/framework/CP_CommonDex.jar"/>
+    <library name="netFramework"
+            file="/system/framework/CP_NetFrameworksDex.jar"/>
+    <library name="netusermgr"
+            file="/system/framework/CP_NetUserMgrDex.jar"/>        
+    <library name="systeminterface"
+            file="/system/framework/CP_SystemInterface.jar"/>    
+</permissions>

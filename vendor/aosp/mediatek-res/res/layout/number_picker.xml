@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/ImageView02" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/date_picker_bkg_big_bottom" android:scaleType="fitXY" />
+    <ViewStub android:id="@id/wheelstub" android:layout="@layout/wheelview" android:inflatedId="@id/wheelview" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ViewStub android:id="@id/elasticstub" android:layout="@layout/elasticview" android:inflatedId="@id/elasticview" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/ImageView03" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/date_picker_bkg_big_up" android:scaleType="fitXY" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/ImageView04" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/selected_item" android:scaleType="fitXY" />
+</merge>

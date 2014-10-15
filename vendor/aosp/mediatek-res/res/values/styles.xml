@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ImageSwitch">
+        <item name="android:textOn"></item>
+        <item name="android:textOff"></item>
+        <item name="android:thumb">@drawable/imageswitch</item>
+        <item name="android:switchMinWidth">80.0dip</item>
+        <item name="android:thumbTextPadding">20.0dip</item>
+    </style>
+    <style name="UnreadNumAppearance">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/ic_newevents_numberindication</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">20.0dip</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+    <style name="label">
+        <item name="android:textSize">@dimen/label_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="big_thin">
+        <item name="android:textSize">@dimen/big_font_size</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+    </style>
+    <style name="header">
+        <item name="android:textSize">@dimen/header_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="header_not_caps" parent="@style/header">
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="big_bold">
+        <item name="android:textSize">@dimen/big_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="widget_big_bold" parent="@style/big_bold">
+        <item name="android:textSize">@dimen/widget_big_font_size</item>
+    </style>
+    <style name="DismissPadKey" parent="@*android:style/Widget.Button">
+        <item name="android:textSize">20.0dip</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:paddingLeft">20.0dip</item>
+        <item name="android:paddingBottom">10.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+</resources>

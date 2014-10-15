@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:id="@id/lock_arrow_animation" android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="200" android:drawable="@drawable/lock_arrow1" />
+    <item android:duration="200" android:drawable="@drawable/lock_arrow2" />
+    <item android:duration="200" android:drawable="@drawable/lock_arrow3" />
+    <item android:duration="200" android:drawable="@drawable/lock_arrow4" />
+    <item android:duration="200" android:drawable="@drawable/lock_arrow5" />
+    <item android:duration="200" android:drawable="@drawable/lock_arrow6" />
+    <item android:duration="200" android:drawable="@drawable/lock_arrow7" />
+</animation-list>

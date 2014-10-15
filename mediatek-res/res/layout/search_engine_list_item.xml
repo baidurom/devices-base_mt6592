@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/search_dialog_searen_engine_item"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="16.0sp" android:textStyle="normal" android:textColor="@*android:color/primary_text_light" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/search_eninge_label" android:paddingRight="6.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:minHeight="@dimen/search_dialog_searen_engine_item" android:singleLine="true" android:layout_toLeftOf="@id/search_eninge_favicon" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/search_eninge_favicon" android:layout_width="20.0dip" android:layout_height="20.0dip" android:scaleType="fitXY" android:layout_alignParentTop="true" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" android:layout_centerVertical="true" />
+</RelativeLayout>

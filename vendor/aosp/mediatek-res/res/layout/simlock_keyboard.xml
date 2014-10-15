@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="48.0dip">
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/one" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/two" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/three" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="48.0dip">
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/four" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/five" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/six" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="48.0dip">
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/seven" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/eight" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/nine" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="48.0dip">
+        <Button android:textAppearance="?android:textAppearanceMedium" android:textSize="14.0dip" android:textColor="#ffdadbdb" android:id="@id/cancel" android:layout_width="0.0sp" android:layout_height="fill_parent" android:text="@string/dismiss" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceLarge" android:textSize="24.0px" android:textColor="#ffdadbdb" android:id="@id/zero" android:layout_width="0.0sp" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <Button android:textAppearance="?android:textAppearanceMedium" android:textSize="14.0dip" android:textColor="#ffdadbdb" android:id="@id/ok" android:layout_width="0.0sp" android:layout_height="fill_parent" android:text="@*android:string/ok" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

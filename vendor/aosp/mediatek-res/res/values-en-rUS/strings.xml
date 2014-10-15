@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sd_accessing_swtich_user_title">Switch user?</string>
+    <string name="sd_accessing_swtich_user_message">All unsaved data in owner account will be lost or damaged.</string>
+    <string name="byteShort">B</string>
+</resources>

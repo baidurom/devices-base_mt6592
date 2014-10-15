@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.internal.policy.impl.keyguard.MediatekDomesticClockView android:layout_gravity="bottom|right|center" android:id="@id/clock_view_domestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:id="@id/clock_domestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="-10.0dip" android:layout_marginTop="6.0dip" android:layout_alignParentRight="true">
+        <TextView android:textAppearance="?android:textAppearanceMedium" android:textSize="@dimen/kg_status_dual_second_clock_time_font_size" android:textColor="#ffffffff" android:ellipsize="none" android:id="@id/clock_text_domestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+        <TextView android:textSize="@dimen/kg_status_dual_second_clock_ampm_font_size" android:textColor="#ffffffff" android:ellipsize="none" android:id="@id/am_pm_domestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:singleLine="true" android:layout_alignBaseline="@id/clock_text_domestic" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/location_weekday" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/clock_domestic" android:layout_alignParentRight="true">
+        <TextView android:textSize="@dimen/kg_status_dual_second_clock_localweekday_font_size" android:textColor="#ffffffff" android:ellipsize="none" android:id="@id/domestic_indicator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/keyguard_domestic_zone_name" android:singleLine="true" />
+        <TextView android:textSize="@dimen/kg_status_dual_second_clock_localweekday_font_size" android:textColor="#ffffffff" android:ellipsize="none" android:id="@id/weekday_domestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:singleLine="true" />
+    </LinearLayout>
+</com.android.internal.policy.impl.keyguard.MediatekDomesticClockView>

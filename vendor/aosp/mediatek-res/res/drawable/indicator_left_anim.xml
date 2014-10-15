@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:id="@id/indicator_left_anim" android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame01" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame02" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame03" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame04" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame05" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame06" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame07" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame08" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame09" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame10" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame11" />
+    <item android:duration="50" android:drawable="@drawable/slidingbar_left_indicator_frame12" />
+</animation-list>

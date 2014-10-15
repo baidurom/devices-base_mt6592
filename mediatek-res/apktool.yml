@@ -1,0 +1,13 @@
+version: 1.5.2
+apkFileName: mediatek-res.apk
+isFrameworkApk: true
+usesFramework:
+  ids:
+  - 1
+sdkInfo:
+  minSdkVersion: '17'
+  targetSdkVersion: '17'
+packageInfo:
+  cur_package: com.mediatek
+  orig_package: com.mediatek
+compressionType: false
