@@ -6,6 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Landroid/view/ViewTreeObserver$OnPostDrawListener;,
         Landroid/view/ViewTreeObserver$CopyOnWriteArray;,
         Landroid/view/ViewTreeObserver$OnComputeInternalInsetsListener;,
         Landroid/view/ViewTreeObserver$InternalInsetsInfo;,
@@ -61,6 +62,17 @@
             "Landroid/view/ViewTreeObserver$CopyOnWriteArray",
             "<",
             "Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mOnPostDrawListeners:Ljava/util/ArrayList;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/ArrayList",
+            "<",
+            "Landroid/view/ViewTreeObserver$OnPostDrawListener;",
             ">;"
         }
     .end annotation
@@ -272,6 +284,36 @@
     invoke-virtual {v0, p1}, Landroid/view/ViewTreeObserver$CopyOnWriteArray;->add(Ljava/lang/Object;)V
 
     .line 376
+    return-void
+.end method
+
+.method public addOnPostDrawListener(Landroid/view/ViewTreeObserver$OnPostDrawListener;)V
+    .locals 1
+    .parameter "listener"
+
+    .prologue
+    .line 900
+    invoke-direct {p0}, Landroid/view/ViewTreeObserver;->checkIsAlive()V
+
+    .line 902
+    iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    if-nez v0, :cond_0
+
+    .line 903
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    .line 906
+    :cond_0
+    iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    invoke-virtual {v0, p1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 907
     return-void
 .end method
 
@@ -613,6 +655,67 @@
     throw v4
 .end method
 
+.method public final dispatchOnPostDraw()Z
+    .locals 5
+
+    .prologue
+    .line 881
+    const/4 v0, 0x0
+
+    .line 882
+    .local v0, cancelDraw:Z
+    iget-object v3, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    .line 883
+    .local v3, listeners:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/view/ViewTreeObserver$OnPostDrawListener;>;"
+    if-eqz v3, :cond_1
+
+    .line 884
+    invoke-virtual {v3}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    .local v1, i$:Ljava/util/Iterator;
+    :goto_0
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_1
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/view/ViewTreeObserver$OnPostDrawListener;
+
+    .line 885
+    .local v2, listener:Landroid/view/ViewTreeObserver$OnPostDrawListener;
+    invoke-interface {v2}, Landroid/view/ViewTreeObserver$OnPostDrawListener;->onPostDraw()Z
+
+    move-result v4
+
+    if-nez v4, :cond_0
+
+    const/4 v4, 0x1
+
+    :goto_1
+    or-int/2addr v0, v4
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v4, 0x0
+
+    goto :goto_1
+
+    .line 888
+    .end local v1           #i$:Ljava/util/Iterator;
+    .end local v2           #listener:Landroid/view/ViewTreeObserver$OnPostDrawListener;
+    :cond_1
+    return v0
+.end method
+
 .method public final dispatchOnPreDraw()Z
     .locals 6
 
@@ -881,7 +984,7 @@
     .line 276
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalFocusListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_7
 
     .line 277
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalFocusListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
@@ -900,7 +1003,7 @@
     .line 284
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalLayoutListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_8
 
     .line 285
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalLayoutListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
@@ -919,7 +1022,7 @@
     .line 292
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPreDrawListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_9
 
     .line 293
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPreDrawListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
@@ -931,14 +1034,33 @@
     .line 299
     :cond_2
     :goto_2
-    iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnTouchModeChangeListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
+    iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
 
     if-eqz v0, :cond_3
+
+    .line 304
+    iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    if-eqz v0, :cond_a
+
+    .line 305
+    iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    iget-object v1, p1, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    invoke-virtual {v0, v1}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
+
+    .line 311
+    :cond_3
+    :goto_3
+    iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnTouchModeChangeListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
+
+    if-eqz v0, :cond_4
 
     .line 300
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnTouchModeChangeListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
 
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_b
 
     .line 301
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnTouchModeChangeListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
@@ -948,16 +1070,16 @@
     invoke-virtual {v0, v1}, Ljava/util/concurrent/CopyOnWriteArrayList;->addAll(Ljava/util/Collection;)Z
 
     .line 307
-    :cond_3
-    :goto_3
+    :cond_4
+    :goto_4
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnComputeInternalInsetsListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_5
 
     .line 308
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnComputeInternalInsetsListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_c
 
     .line 309
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnComputeInternalInsetsListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
@@ -967,16 +1089,16 @@
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver$CopyOnWriteArray;->addAll(Landroid/view/ViewTreeObserver$CopyOnWriteArray;)V
 
     .line 315
-    :cond_4
-    :goto_4
+    :cond_5
+    :goto_5
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnScrollChangedListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_6
 
     .line 316
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnScrollChangedListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_d
 
     .line 317
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnScrollChangedListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
@@ -986,15 +1108,15 @@
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver$CopyOnWriteArray;->addAll(Landroid/view/ViewTreeObserver$CopyOnWriteArray;)V
 
     .line 323
-    :cond_5
-    :goto_5
+    :cond_6
+    :goto_6
     invoke-direct {p1}, Landroid/view/ViewTreeObserver;->kill()V
 
     .line 324
     return-void
 
     .line 279
-    :cond_6
+    :cond_7
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnGlobalFocusListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalFocusListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
@@ -1002,7 +1124,7 @@
     goto :goto_0
 
     .line 287
-    :cond_7
+    :cond_8
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnGlobalLayoutListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
     iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalLayoutListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
@@ -1010,7 +1132,7 @@
     goto :goto_1
 
     .line 295
-    :cond_8
+    :cond_9
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnPreDrawListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
     iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPreDrawListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
@@ -1018,28 +1140,36 @@
     goto :goto_2
 
     .line 303
-    :cond_9
+    :cond_a
+    iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    goto :goto_3
+
+    .line 315
+    :cond_b
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnTouchModeChangeListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
 
     iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnTouchModeChangeListeners:Ljava/util/concurrent/CopyOnWriteArrayList;
 
-    goto :goto_3
+    goto :goto_4
 
     .line 311
-    :cond_a
+    :cond_c
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnComputeInternalInsetsListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
     iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnComputeInternalInsetsListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    goto :goto_4
+    goto :goto_5
 
     .line 319
-    :cond_b
+    :cond_d
     iget-object v0, p1, Landroid/view/ViewTreeObserver;->mOnScrollChangedListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
     iput-object v0, p0, Landroid/view/ViewTreeObserver;->mOnScrollChangedListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
-    goto :goto_5
+    goto :goto_6
 .end method
 
 .method public removeGlobalOnLayoutListener(Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;)V
@@ -1156,6 +1286,32 @@
     iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnGlobalLayoutListeners:Landroid/view/ViewTreeObserver$CopyOnWriteArray;
 
     invoke-virtual {v0, p1}, Landroid/view/ViewTreeObserver$CopyOnWriteArray;->remove(Ljava/lang/Object;)V
+
+    goto :goto_0
+.end method
+
+.method public removeOnPostDrawListener(Landroid/view/ViewTreeObserver$OnPostDrawListener;)V
+    .locals 1
+    .parameter "victim"
+
+    .prologue
+    .line 918
+    invoke-direct {p0}, Landroid/view/ViewTreeObserver;->checkIsAlive()V
+
+    .line 919
+    iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    if-nez v0, :cond_0
+
+    .line 923
+    :goto_0
+    return-void
+
+    .line 922
+    :cond_0
+    iget-object v0, p0, Landroid/view/ViewTreeObserver;->mOnPostDrawListeners:Ljava/util/ArrayList;
+
+    invoke-virtual {v0, p1}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
 
     goto :goto_0
 .end method
