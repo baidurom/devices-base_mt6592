@@ -1278,13 +1278,13 @@
     sput v2, Landroid/media/AudioService;->sSoundEffectVolumeDb:I
 
     .line 513
-    new-instance v2, Landroid/view/VolumePanel;
+    new-instance v2, Landroid/view/BaiduVolumePanel;
 
     move-object/from16 v0, p1
 
     move-object/from16 v1, p0
 
-    invoke-direct {v2, v0, v1}, Landroid/view/VolumePanel;-><init>(Landroid/content/Context;Landroid/media/AudioService;)V
+    invoke-direct {v2, v0, v1}, Landroid/view/BaiduVolumePanel;-><init>(Landroid/content/Context;Landroid/media/AudioService;)V
 
     move-object/from16 v0, p0
 

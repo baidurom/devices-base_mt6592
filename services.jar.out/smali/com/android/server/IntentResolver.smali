@@ -3715,6 +3715,10 @@
     .end local v40           #slashpos:I
     .restart local v4       #categories:Landroid/util/FastImmutableArraySet;,"Landroid/util/FastImmutableArraySet<Ljava/lang/String;>;"
     :cond_f
+    move-object/from16 v0, p1
+
+    invoke-static {v0, v10}, Lcom/android/server/BaiduIntentResolverInjector;->filterResult(Landroid/content/Intent;Ljava/util/ArrayList;)V
+
     return-object v10
 .end method
 
@@ -3830,6 +3834,8 @@
     .restart local v12       #i:I
     :cond_1
     invoke-virtual {p0, v9}, Lcom/android/server/IntentResolver;->sortResults(Ljava/util/List;)V
+
+    invoke-static {p1, v9}, Lcom/android/server/BaiduIntentResolverInjector;->filterResult(Landroid/content/Intent;Ljava/util/ArrayList;)V
 
     .line 230
     return-object v9

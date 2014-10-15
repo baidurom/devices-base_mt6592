@@ -382,3 +382,12 @@
     :cond_1
     return-wide p1
 .end method
+
+.method getmLength()J
+    .locals 2
+
+    .prologue
+    iget-wide v0, p0, Landroid/content/res/AssetManager$AssetInputStream;->mLength:J
+
+    return-wide v0
+.end method

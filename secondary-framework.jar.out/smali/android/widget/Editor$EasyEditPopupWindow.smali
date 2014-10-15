@@ -18,7 +18,7 @@
 
 
 # static fields
-.field private static final POPUP_TEXT_LAYOUT:I = 0x10900d4
+.field private static final POPUP_TEXT_LAYOUT:I = #layout@yi_text_edit_action_popup_text#t
 
 
 # instance fields
@@ -240,7 +240,7 @@
 
     .line 2015
     .local v2, wrapContent:Landroid/view/ViewGroup$LayoutParams;
-    const v3, 0x10900d4
+    const v3, #layout@yi_text_edit_action_popup_text#t
 
     const/4 v4, 0x0
 

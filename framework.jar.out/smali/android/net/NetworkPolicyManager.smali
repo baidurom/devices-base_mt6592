@@ -10,6 +10,8 @@
 
 .field public static final POLICY_NONE:I = 0x0
 
+.field public static final POLICY_REJECT_METERED:I = 0x2
+
 .field public static final POLICY_REJECT_METERED_BACKGROUND:I = 0x1
 
 .field public static final RULE_ALLOW_ALL:I = 0x0

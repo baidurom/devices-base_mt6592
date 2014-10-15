@@ -1109,9 +1109,7 @@
     .line 1146
     .local v2, request:Landroid/location/LocationRequest;
     :try_start_0
-    iget-object v3, p0, Landroid/location/LocationManager;->mService:Landroid/location/ILocationManager;
-
-    invoke-interface {v3, v2, v1}, Landroid/location/ILocationManager;->getLastLocation(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
+    invoke-direct {p0, v2, v1}, Landroid/location/LocationManager;->getLastLocationBaidu(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -1824,7 +1822,7 @@
     .local v0, request:Landroid/location/LocationRequest;
     const/4 v1, 0x0
 
-    invoke-direct {p0, v0, p5, p6, v1}, Landroid/location/LocationManager;->requestLocationUpdates(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
+    invoke-direct {p0, v0, p5, p6, v1}, Landroid/location/LocationManager;->requestLocationUpdatesBaidu(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
 
     .line 496
     return-void
@@ -2089,7 +2087,7 @@
     .local v0, request:Landroid/location/LocationRequest;
     const/4 v1, 0x0
 
-    invoke-direct {p0, v0, p2, p3, v1}, Landroid/location/LocationManager;->requestLocationUpdates(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
+    invoke-direct {p0, v0, p2, p3, v1}, Landroid/location/LocationManager;->requestLocationUpdatesBaidu(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
 
     .line 652
     return-void
@@ -2337,6 +2335,88 @@
     const-string v1, "RemoteException"
 
     invoke-static {v0, v1, v6}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    goto :goto_0
+.end method
+
+.method private checkDynamicPermission()Z
+    .locals 4
+
+    .prologue
+    const/4 v1, 0x0
+
+    const/4 v0, 0x1
+
+    const/4 v2, 0x2
+
+    new-array v3, v1, [Ljava/lang/Object;
+
+    invoke-static {v2, v0, v3}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
+
+    move-result v2
+
+    if-eq v2, v0, :cond_0
+
+    :goto_0
+    return v0
+
+    :cond_0
+    move v0, v1
+
+    goto :goto_0
+.end method
+
+.method private getLastLocationBaidu(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
+    .locals 1
+    .parameter "request"
+    .parameter "packageName"
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    invoke-direct {p0}, Landroid/location/LocationManager;->checkDynamicPermission()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    :goto_0
+    return-object v0
+
+    :cond_0
+    iget-object v0, p0, Landroid/location/LocationManager;->mService:Landroid/location/ILocationManager;
+
+    invoke-interface {v0, p1, p2}, Landroid/location/ILocationManager;->getLastLocation(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method private requestLocationUpdatesBaidu(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
+    .locals 1
+    .parameter "request"
+    .parameter "listener"
+    .parameter "looper"
+    .parameter "intent"
+
+    .prologue
+    invoke-direct {p0}, Landroid/location/LocationManager;->checkDynamicPermission()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    :goto_0
+    return-void
+
+    :cond_0
+    invoke-direct {p0, p1, p2, p3, p4}, Landroid/location/LocationManager;->requestLocationUpdates(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
 
     goto :goto_0
 .end method

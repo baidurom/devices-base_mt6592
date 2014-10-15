@@ -1,4 +1,4 @@
-.class final Landroid/app/ContextImpl$ApplicationContentResolver;
+.class Landroid/app/ContextImpl$ApplicationContentResolver;
 .super Landroid/content/ContentResolver;
 .source "ContextImpl.java"
 
@@ -9,15 +9,15 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x1a
+    accessFlags = 0xa
     name = "ApplicationContentResolver"
 .end annotation
 
 
 # instance fields
-.field private final mMainThread:Landroid/app/ActivityThread;
+.field protected final mMainThread:Landroid/app/ActivityThread;
 
-.field private final mUser:Landroid/os/UserHandle;
+.field protected final mUser:Landroid/os/UserHandle;
 
 
 # direct methods

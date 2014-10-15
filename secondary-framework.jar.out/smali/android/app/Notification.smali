@@ -192,6 +192,8 @@
 
     iput-wide v0, p0, Landroid/app/Notification;->simId:J
 
+    invoke-direct {p0}, Landroid/app/Notification;->setSimIdAndInfoType()V
+
     .line 541
     return-void
 .end method
@@ -286,6 +288,8 @@
     iput-wide v0, p0, Landroid/app/Notification;->simId:J
 
     .line 558
+    invoke-direct {p0}, Landroid/app/Notification;->setSimIdAndInfoType()V
+
     return-void
 .end method
 
@@ -498,6 +502,8 @@
 
     .line 620
     :cond_6
+    invoke-direct {p0, p1}, Landroid/app/Notification;->setSimIdAndInfoType(Landroid/os/Parcel;)V
+
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v1
@@ -774,6 +780,14 @@
     iput v7, v2, Landroid/app/Notification;->audioStreamType:I
 
     .line 680
+    iget v7, p0, Landroid/app/Notification;->simInfoType:I
+
+    iput v7, v2, Landroid/app/Notification;->simInfoType:I
+
+    iget-wide v7, p0, Landroid/app/Notification;->simId:J
+
+    iput-wide v7, v2, Landroid/app/Notification;->simId:J
+
     iget-object v6, p0, Landroid/app/Notification;->vibrate:[J
 
     .line 681
@@ -1633,6 +1647,14 @@
 
     .line 785
     :goto_6
+    iget v0, p0, Landroid/app/Notification;->simInfoType:I
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    iget-wide v0, p0, Landroid/app/Notification;->simId:J
+
+    invoke-virtual {p1, v0, v1}, Landroid/os/Parcel;->writeLong(J)V
+
     iget v0, p0, Landroid/app/Notification;->audioStreamType:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
@@ -1781,4 +1803,50 @@
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
     goto :goto_9
+.end method
+
+.method static synthetic access$iput-extras-83da58(Landroid/app/Notification;Landroid/os/Bundle;)Landroid/os/Bundle;
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    iput-object p1, p0, Landroid/app/Notification;->extras:Landroid/os/Bundle;
+
+    return-object p1
+.end method
+
+.method private setSimIdAndInfoType()V
+    .locals 2
+
+    .prologue
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/app/Notification;->simInfoType:I
+
+    const-wide/16 v0, -0x1
+
+    iput-wide v0, p0, Landroid/app/Notification;->simId:J
+
+    return-void
+.end method
+
+.method private setSimIdAndInfoType(Landroid/os/Parcel;)V
+    .locals 2
+    .parameter "parcel"
+
+    .prologue
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    iput v0, p0, Landroid/app/Notification;->simInfoType:I
+
+    invoke-virtual {p1}, Landroid/os/Parcel;->readLong()J
+
+    move-result-wide v0
+
+    iput-wide v0, p0, Landroid/app/Notification;->simId:J
+
+    return-void
 .end method

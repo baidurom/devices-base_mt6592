@@ -4026,6 +4026,10 @@
 
     if-nez v8, :cond_8
 
+    invoke-direct {p0, v6, v0}, Landroid/text/Layout;->fixCursorHeight(II)I
+
+    move-result v0
+
     .line 1296
     int-to-float v8, v7
 
@@ -5805,6 +5809,12 @@
     .local v7, bottom:I
     if-ne v3, v15, :cond_2
 
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v15, v7}, Landroid/text/Layout;->fixCursorHeight(II)I
+
+    move-result v7
+
     move-object/from16 v2, p0
 
     move/from16 v4, p1
@@ -5984,6 +5994,12 @@
     move-result v7
 
     .line 1420
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v15, v7}, Landroid/text/Layout;->fixCursorHeight(II)I
+
+    move-result v7
+
     move-object/from16 v0, p0
 
     invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineStart(I)I
@@ -6476,4 +6492,42 @@
 
     .line 177
     return-void
+.end method
+
+.method private fixCursorHeight(II)I
+    .locals 2
+    .parameter "line"
+    .parameter "bottom"
+
+    .prologue
+    iget v0, p0, Landroid/text/Layout;->mSpacingMult:F
+
+    const/high16 v1, 0x3f80
+
+    invoke-static {v0, v1}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    iget v0, p0, Landroid/text/Layout;->mSpacingAdd:F
+
+    const/4 v1, 0x0
+
+    invoke-static {v0, v1}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    :cond_0
+    invoke-virtual {p0, p1}, Landroid/text/Layout;->getLineBaseline(I)I
+
+    move-result v0
+
+    add-int/lit8 p2, v0, 0x6
+
+    .end local p2
+    :cond_1
+    return p2
 .end method

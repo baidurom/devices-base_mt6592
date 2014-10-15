@@ -261,6 +261,10 @@
 
     invoke-static {v9, v11, v12}, Landroid/provider/Settings$Secure;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
 
+    iget-object v9, p0, Lcom/android/server/ConnectivityService$ConnectivityServiceReceiver;->this$0:Lcom/android/server/ConnectivityService;
+
+    invoke-static {v9, v2}, Lcom/android/server/ConnectivityService$BaiduInjector;->setPreferSimSetting(Lcom/android/server/ConnectivityService;Ljava/lang/Long;)V
+
     .line 4338
     :goto_2
     iget-object v9, p0, Lcom/android/server/ConnectivityService$ConnectivityServiceReceiver;->this$0:Lcom/android/server/ConnectivityService;

@@ -22,9 +22,9 @@
 
 
 # instance fields
-.field private mPasteTextView:Landroid/widget/TextView;
+.field mPasteTextView:Landroid/widget/TextView;
 
-.field private mReplaceTextView:Landroid/widget/TextView;
+.field mReplaceTextView:Landroid/widget/TextView;
 
 .field final synthetic this$0:Landroid/widget/Editor;
 
@@ -602,4 +602,12 @@
     invoke-super {p0}, Landroid/widget/Editor$PinnedPopupWindow;->show()V
 
     goto :goto_3
+.end method
+
+.method public updatePositionFlag(I)V
+    .locals 0
+    .parameter "Flag"
+
+    .prologue
+    return-void
 .end method

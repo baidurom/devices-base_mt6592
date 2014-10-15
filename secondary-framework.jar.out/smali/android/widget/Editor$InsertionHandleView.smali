@@ -375,6 +375,8 @@
 
     if-gez v2, :cond_0
 
+    invoke-direct {p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
+
     .line 3260
     const/4 v2, 0x0
 
@@ -396,6 +398,8 @@
     invoke-virtual {p0}, Landroid/widget/Editor$InsertionHandleView;->show()V
 
     .line 3268
+    invoke-direct {p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
+
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/widget/Editor$InsertionHandleView;->showActionPopupWindow(I)V
@@ -452,5 +456,23 @@
     invoke-static {v0, p1}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
 
     .line 3346
+    return-void
+.end method
+
+.method private updatePopupPosition()V
+    .locals 2
+
+    .prologue
+    iget-object v0, p0, Landroid/widget/Editor$InsertionHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Landroid/widget/Editor$InsertionHandleView;->mActionPopupWindow:Landroid/widget/Editor$ActionPopupWindow;
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Landroid/widget/Editor$ActionPopupWindow;->updatePositionFlag(I)V
+
+    :cond_0
     return-void
 .end method

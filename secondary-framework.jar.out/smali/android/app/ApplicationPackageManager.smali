@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/app/ApplicationPackageManager$ResourceName;
+        Landroid/app/ApplicationPackageManager$ResourceName;,
+        Landroid/app/ApplicationPackageManager$BaiduInjector;
     }
 .end annotation
 
@@ -1721,7 +1722,7 @@
 
     .line 674
     .local v3, r:Landroid/content/res/Resources;
-    invoke-virtual {v3, p2}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+    invoke-static {p3, p1, p2, v3}, Landroid/app/ApplicationPackageManager$BaiduInjector;->multiTheme_getDrawableLocal(Landroid/content/pm/ApplicationInfo;Ljava/lang/String;ILandroid/content/res/Resources;)Landroid/graphics/drawable/Drawable;
 
     move-result-object v0
 

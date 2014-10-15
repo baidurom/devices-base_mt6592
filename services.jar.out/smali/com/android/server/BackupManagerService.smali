@@ -20,6 +20,9 @@
         Lcom/android/server/BackupManagerService$BackupState;,
         Lcom/android/server/BackupManagerService$BackupRestoreTask;,
         Lcom/android/server/BackupManagerService$ClearDataObserver;,
+        Lcom/android/server/BackupManagerService$ObserveBaiduTransport;,
+        Lcom/android/server/BackupManagerService$BaiduConnection;,
+        Lcom/android/server/BackupManagerService$BaiduBackupInjector;,
         Lcom/android/server/BackupManagerService$RunInitializeReceiver;,
         Lcom/android/server/BackupManagerService$RunBackupReceiver;,
         Lcom/android/server/BackupManagerService$BackupHandler;,
@@ -1434,6 +1437,8 @@
     .end local v12           #info:Landroid/content/pm/ApplicationInfo;
     .end local v14           #intent:Landroid/content/Intent;
     :goto_4
+    invoke-static/range {p0 .. p0}, Lcom/android/server/BackupManagerService$BaiduBackupInjector;->registerBaiduTransport(Lcom/android/server/BackupManagerService;)V
+
     invoke-direct/range {p0 .. p0}, Lcom/android/server/BackupManagerService;->parseLeftoverJournals()V
 
     .line 854

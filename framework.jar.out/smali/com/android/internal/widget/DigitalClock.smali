@@ -20,9 +20,9 @@
 
 .field private static final SYSTEM:Ljava/lang/String; = "/system/fonts/"
 
-.field private static final SYSTEM_FONT_TIME_BACKGROUND:Ljava/lang/String; = "/system/fonts/AndroidClock.ttf"
+.field private static final SYSTEM_FONT_TIME_BACKGROUND:Ljava/lang/String; = "/system/fonts/Clockopia.ttf"
 
-.field private static final SYSTEM_FONT_TIME_FOREGROUND:Ljava/lang/String; = "/system/fonts/AndroidClock_Highlight.ttf"
+.field private static final SYSTEM_FONT_TIME_FOREGROUND:Ljava/lang/String; = "/system/fonts/Clockopia.ttf"
 
 .field private static final sBackgroundFont:Landroid/graphics/Typeface;
 
@@ -55,7 +55,7 @@
 
     .prologue
     .line 66
-    const-string v0, "/system/fonts/AndroidClock.ttf"
+    const-string v0, "/system/fonts/Clockopia.ttf"
 
     invoke-static {v0}, Landroid/graphics/Typeface;->createFromFile(Ljava/lang/String;)Landroid/graphics/Typeface;
 
@@ -64,7 +64,7 @@
     sput-object v0, Lcom/android/internal/widget/DigitalClock;->sBackgroundFont:Landroid/graphics/Typeface;
 
     .line 67
-    const-string v0, "/system/fonts/AndroidClock_Highlight.ttf"
+    const-string v0, "/system/fonts/Clockopia.ttf"
 
     invoke-static {v0}, Landroid/graphics/Typeface;->createFromFile(Ljava/lang/String;)Landroid/graphics/Typeface;
 

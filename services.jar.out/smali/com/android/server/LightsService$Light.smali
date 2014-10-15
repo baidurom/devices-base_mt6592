@@ -321,7 +321,7 @@
     .line 67
     const/4 v0, 0x0
 
-    invoke-virtual {p0, p1, v0}, Lcom/android/server/LightsService$Light;->setBrightness(II)V
+    invoke-virtual {p0, p1, v0}, Lcom/android/server/LightsService$Light;->setBrightnessBaidu(II)V
 
     .line 68
     return-void
@@ -507,4 +507,99 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v0
+.end method
+
+.method protected setBrightnessBaidu(II)V
+    .locals 5
+    .parameter "brightness"
+    .parameter "brightnessMode"
+
+    .prologue
+    const/4 v1, 0x0
+
+    iget v2, p0, Lcom/android/server/LightsService$Light;->mId:I
+
+    const/4 v3, 0x2
+
+    if-ne v2, v3, :cond_2
+
+    iget-object v2, p0, Lcom/android/server/LightsService$Light;->this$0:Lcom/android/server/LightsService;
+
+    #getter for: Lcom/android/server/LightsService;->mContext:Landroid/content/Context;
+    invoke-static {v2}, Lcom/android/server/LightsService;->access$300(Lcom/android/server/LightsService;)Landroid/content/Context;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v2
+
+    const-string v3, "button_light_off"
+
+    invoke-static {v2, v3, v1}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    const/4 v0, 0x1
+
+    .local v0, value:Z
+    :goto_0
+    const-string v2, "LightsService"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "setBrightnessBaidu, button light off: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v4, ", button brightness: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    if-eqz v0, :cond_1
+
+    invoke-virtual {p0, v1, v1}, Lcom/android/server/LightsService$Light;->setBrightness(II)V
+
+    .end local v0           #value:Z
+    :goto_1
+    return-void
+
+    :cond_0
+    move v0, v1
+
+    goto :goto_0
+
+    .restart local v0       #value:Z
+    :cond_1
+    invoke-virtual {p0, p1, v1}, Lcom/android/server/LightsService$Light;->setBrightness(II)V
+
+    goto :goto_1
+
+    .end local v0           #value:Z
+    :cond_2
+    invoke-virtual {p0, p1, v1}, Lcom/android/server/LightsService$Light;->setBrightness(II)V
+
+    goto :goto_1
 .end method

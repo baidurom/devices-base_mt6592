@@ -551,6 +551,8 @@
 
     .prologue
     .line 121
+    invoke-direct {p0, p1}, Landroid/content/ClipboardManager;->addExtra(Landroid/content/ClipData;)V
+
     :try_start_0
     invoke-static {}, Landroid/content/ClipboardManager;->getService()Landroid/content/IClipboard;
 
@@ -587,4 +589,97 @@
 
     .line 205
     return-void
+.end method
+
+.method private addExtra(Landroid/content/ClipData;)V
+    .locals 8
+    .parameter "clip"
+
+    .prologue
+    const/4 v5, 0x1
+
+    const/4 v6, 0x0
+
+    invoke-virtual {p0}, Landroid/content/ClipboardManager;->getPrimaryClip()Landroid/content/ClipData;
+
+    move-result-object v1
+
+    .local v1, currClip:Landroid/content/ClipData;
+    if-nez v1, :cond_1
+
+    :cond_0
+    return-void
+
+    :cond_1
+    invoke-virtual {v1, v6}, Landroid/content/ClipData;->getItemAt(I)Landroid/content/ClipData$Item;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Landroid/content/ClipData$Item;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v7
+
+    if-eqz v7, :cond_2
+
+    move v3, v5
+
+    .local v3, isCurrText:Z
+    :goto_0
+    invoke-virtual {p1, v6}, Landroid/content/ClipData;->getItemAt(I)Landroid/content/ClipData$Item;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Landroid/content/ClipData$Item;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v7
+
+    if-eqz v7, :cond_3
+
+    move v4, v5
+
+    .local v4, isNewText:Z
+    :goto_1
+    if-eqz v3, :cond_0
+
+    if-eqz v4, :cond_0
+
+    invoke-virtual {v1}, Landroid/content/ClipData;->getItemCount()I
+
+    move-result v0
+
+    .local v0, N:I
+    const/4 v2, 0x0
+
+    .local v2, i:I
+    :goto_2
+    if-ge v2, v0, :cond_0
+
+    const/4 v5, 0x2
+
+    if-ge v2, v5, :cond_0
+
+    invoke-virtual {v1, v2}, Landroid/content/ClipData;->getItemAt(I)Landroid/content/ClipData$Item;
+
+    move-result-object v5
+
+    invoke-virtual {p1, v5}, Landroid/content/ClipData;->addItem(Landroid/content/ClipData$Item;)V
+
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_2
+
+    .end local v0           #N:I
+    .end local v2           #i:I
+    .end local v3           #isCurrText:Z
+    .end local v4           #isNewText:Z
+    :cond_2
+    move v3, v6
+
+    goto :goto_0
+
+    .restart local v3       #isCurrText:Z
+    :cond_3
+    move v4, v6
+
+    goto :goto_1
 .end method
