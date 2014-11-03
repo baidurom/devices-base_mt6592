@@ -6,7 +6,7 @@
 # You can configure the property according to your device and the default value is base.
 # Support values: base, base_cm, and other devices in the future.
 #-----------------------------------------------------------------------------
-#BASE := base
+BASE := base
 
 ##############################################################################
 # Default DALVIK_VM_BUILD setting is 27
@@ -65,7 +65,7 @@ SIGN_OTA := true
 ##############################################################################
 # Directorys which you want to remove in vendor directory
 #-----------------------------------------------------------------------------
-vendor_remove_dirs := app vendor/operator/app
+vendor_remove_dirs := app vendor/operator/app mobile_toolkit
 
 ##############################################################################
 # Files which you want to remove in vendor directory
@@ -138,7 +138,7 @@ baidu_modify_apps := Phone
 # baidu_modify_jars: which base the baidu's jar
 # just append *.smali.part
 #-----------------------------------------------------------------------------
-# baidu_modify_jars := android.policy
+baidu_modify_jars := android.policy
 
 ##############################################################################
 # override_property: this property will override the build.prop

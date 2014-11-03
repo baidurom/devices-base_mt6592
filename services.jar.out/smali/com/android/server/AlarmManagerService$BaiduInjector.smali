@@ -602,33 +602,56 @@
     const/4 v5, 0x0
 
     invoke-virtual/range {v0 .. v5}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     move-result-object v6
 
     .line 208
     .local v6, cursor:Landroid/database/Cursor;
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_2
 
+    :try_start_1
     invoke-interface {v6}, Landroid/database/Cursor;->getCount()I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     move-result v1
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_2
 
-    move v1, v9
+    if-eqz v6, :cond_1
 
-    .line 212
-    goto :goto_0
+    :try_start_2
+    invoke-interface {v6}, Landroid/database/Cursor;->close()V
 
     :cond_1
-    move v1, v10
+    move v1, v9
 
-    .line 217
     goto :goto_0
 
-    .line 219
+    :cond_2
+    if-eqz v6, :cond_3
+
+    invoke-interface {v6}, Landroid/database/Cursor;->close()V
+
+    :cond_3
+    move v1, v10
+
+    goto :goto_0
+
+    :catchall_0
+    move-exception v1
+
+    if-eqz v6, :cond_4
+
+    invoke-interface {v6}, Landroid/database/Cursor;->close()V
+
+    :cond_4
+    throw v1
+    :try_end_2
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+
     .end local v0           #resolver:Landroid/content/ContentResolver;
     .end local v6           #cursor:Landroid/database/Cursor;
     :catch_0

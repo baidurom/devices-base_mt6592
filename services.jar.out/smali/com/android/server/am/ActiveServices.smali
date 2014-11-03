@@ -6081,7 +6081,7 @@
 
     move/from16 v7, p7
 
-    invoke-direct/range {v2 .. v8}, Lcom/android/server/am/ActiveServices;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;IIIZ)Lcom/android/server/am/ActiveServices$ServiceLookupResult;
+    invoke-direct/range {v2 .. v8}, Lcom/android/server/am/ActiveServices;->retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;IIIZ)Lcom/android/server/am/ActiveServices$ServiceLookupResult;
 
     move-result-object v18
 
@@ -12055,7 +12055,7 @@
 
     move/from16 v5, p6
 
-    invoke-direct/range {v0 .. v6}, Lcom/android/server/am/ActiveServices;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;IIIZ)Lcom/android/server/am/ActiveServices$ServiceLookupResult;
+    invoke-direct/range {v0 .. v6}, Lcom/android/server/am/ActiveServices;->retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;IIIZ)Lcom/android/server/am/ActiveServices$ServiceLookupResult;
 
     move-result-object v10
 
@@ -13099,4 +13099,79 @@
     const/4 v5, 0x1
 
     goto :goto_0
+.end method
+
+.method private retrieveServiceLockedBaidu(Landroid/content/Intent;Ljava/lang/String;IIIZ)Lcom/android/server/am/ActiveServices$ServiceLookupResult;
+    .locals 5
+    .parameter "service"
+    .parameter "resolvedType"
+    .parameter "callingPid"
+    .parameter "callingUid"
+    .parameter "userId"
+    .parameter "createIfNeeded"
+
+    .prologue
+    invoke-direct/range {p0 .. p6}, Lcom/android/server/am/ActiveServices;->retrieveServiceLocked(Landroid/content/Intent;Ljava/lang/String;IIIZ)Lcom/android/server/am/ActiveServices$ServiceLookupResult;
+
+    move-result-object v1
+
+    .local v1, res:Lcom/android/server/am/ActiveServices$ServiceLookupResult;
+    if-eqz v1, :cond_1
+
+    iget-object v2, v1, Lcom/android/server/am/ActiveServices$ServiceLookupResult;->record:Lcom/android/server/am/ServiceRecord;
+
+    if-eqz v2, :cond_1
+
+    iget-object v2, v1, Lcom/android/server/am/ActiveServices$ServiceLookupResult;->record:Lcom/android/server/am/ServiceRecord;
+
+    iget-object v2, v2, Lcom/android/server/am/ServiceRecord;->serviceInfo:Landroid/content/pm/ServiceInfo;
+
+    iget-object v0, v2, Landroid/content/pm/ServiceInfo;->packageName:Ljava/lang/String;
+
+    .local v0, pkgName:Ljava/lang/String;
+    if-eqz v0, :cond_1
+
+    iget-object v2, p0, Lcom/android/server/am/ActiveServices;->mAm:Lcom/android/server/am/ActivityManagerService;
+
+    iget-object v2, v2, Lcom/android/server/am/ActivityManagerService;->mLruProcesses:Ljava/util/ArrayList;
+
+    invoke-static {v0, v2}, Lcom/baidu/security/bm/BroadcastManagerService;->filterService(Ljava/lang/String;Ljava/util/ArrayList;)I
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    sget-boolean v2, Lcom/android/server/am/ActiveServices;->DEBUG_MU:Z
+
+    if-eqz v2, :cond_0
+
+    const-string v2, "ActivityManager"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "retrieveServiceLockedBaidu filter "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    :cond_0
+    const/4 v1, 0x0
+
+    .end local v0           #pkgName:Ljava/lang/String;
+    .end local v1           #res:Lcom/android/server/am/ActiveServices$ServiceLookupResult;
+    :cond_1
+    return-object v1
 .end method
