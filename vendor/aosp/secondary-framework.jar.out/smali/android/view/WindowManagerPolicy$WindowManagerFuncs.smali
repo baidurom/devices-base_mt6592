@@ -32,9 +32,6 @@
 .method public abstract monitorInput(Ljava/lang/String;)Landroid/view/InputChannel;
 .end method
 
-.method public abstract reboot(Ljava/lang/String;Z)V
-.end method
-
 .method public abstract rebootSafeMode(Z)V
 .end method
 
