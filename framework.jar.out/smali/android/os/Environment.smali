@@ -88,6 +88,7 @@
 
 .field private static volatile sSecondaryVolume:Landroid/os/storage/StorageVolume;
 
+.field private static sSecondaryVolumeInit:Z
 
 # direct methods
 .method static constructor <clinit>()V
@@ -1340,28 +1341,22 @@
     .locals 10
 
     .prologue
-    sget-object v7, Landroid/os/Environment;->sSecondaryVolume:Landroid/os/storage/StorageVolume;
+    const/4 v9, 0x1
 
-    if-nez v7, :cond_1
+    sget-boolean v7, Landroid/os/Environment;->sSecondaryVolumeInit:Z
 
-    const-string v7, "SECONDARY_STORAGE"
-
-    invoke-static {v7}, Ljava/lang/System;->getenv(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v7
-
-    if-eqz v7, :cond_1
+    if-eq v7, v9, :cond_1
 
     sget-object v8, Landroid/os/Environment;->sLock:Ljava/lang/Object;
 
     monitor-enter v8
 
     :try_start_0
-    sget-object v7, Landroid/os/Environment;->sSecondaryVolume:Landroid/os/storage/StorageVolume;
+    sget-boolean v7, Landroid/os/Environment;->sSecondaryVolumeInit:Z
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    if-nez v7, :cond_0
+    if-eq v7, v9, :cond_0
 
     :try_start_1
     const-string v7, "mount"
@@ -1395,21 +1390,27 @@
     aget-object v5, v0, v2
 
     .local v5, volumeItem:Landroid/os/storage/StorageVolume;
+    invoke-virtual {v5}, Landroid/os/storage/StorageVolume;->isPrimary()Z
+
+    move-result v7
+
+    if-nez v7, :cond_2
+
     invoke-virtual {v5}, Landroid/os/storage/StorageVolume;->getPath()Ljava/lang/String;
 
     move-result-object v7
 
-    const-string v9, "SECONDARY_STORAGE"
+    invoke-virtual {v7}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
-    invoke-static {v9}, Ljava/lang/System;->getenv(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v7
 
-    move-result-object v9
+    const-string v9, "usb"
 
-    invoke-virtual {v7, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v7, v9}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v7
 
-    if-eqz v7, :cond_2
+    if-nez v7, :cond_2
 
     sput-object v5, Landroid/os/Environment;->sSecondaryVolume:Landroid/os/storage/StorageVolume;
     :try_end_1
@@ -1423,7 +1424,11 @@
     .end local v6           #volumes:[Landroid/os/storage/StorageVolume;
     :cond_0
     :goto_1
+    const/4 v7, 0x1
+
     :try_start_2
+    sput-boolean v7, Landroid/os/Environment;->sSecondaryVolumeInit:Z
+
     monitor-exit v8
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
@@ -1550,4 +1555,15 @@
     const/4 v1, 0x0
 
     goto :goto_0
+.end method
+
+.method static synthetic access$invoke-getSecondaryVolume-32cf99()Landroid/os/storage/StorageVolume;
+    .locals 1
+
+    .prologue
+    invoke-static {}, Landroid/os/Environment;->getSecondaryVolume()Landroid/os/storage/StorageVolume;
+
+    move-result-object v0
+
+    return-object v0
 .end method

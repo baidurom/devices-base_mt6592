@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field final mPref:Lcom/android/server/PreferredComponent;
+.field mPref:Lcom/android/server/PreferredComponent;
 
 
 # direct methods
