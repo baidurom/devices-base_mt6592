@@ -403,6 +403,10 @@
 
     .line 372
     .local v0, accurateFile:Ljava/io/File;
+    invoke-static {p1, p2}, Landroid/content/res/BaiduAssetManager$BaiduMultiThemeInjector;->getCustomFileName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
     if-nez v0, :cond_2
 
     new-instance v2, Ljava/io/File;
@@ -555,4 +559,153 @@
 
     .line 278
     return-void
+.end method
+
+.method private static final getCustomFileName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .locals 9
+    .parameter "fileName"
+    .parameter "packageName"
+
+    .prologue
+    move-object v2, p0
+
+    .local v2, customFileName:Ljava/lang/String;
+    invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
+
+    move-result-object v6
+
+    .local v6, res:Landroid/content/res/Resources;
+    const/4 v1, 0x0
+
+    .local v1, customCameraPackage:Ljava/lang/String;
+    const/4 v5, 0x0
+
+    .local v5, customFmRadioPackage:Ljava/lang/String;
+    const v7, #android:string@config_customCameraPackage#t
+
+    :try_start_0
+    invoke-virtual {v6, v7}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    const v7, #android:string@config_customFmRadioPackage#t
+
+    invoke-virtual {v6, v7}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+    :try_end_0
+    .catch Landroid/content/res/Resources$NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result-object v5
+
+    :goto_0
+    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v7
+
+    if-nez v7, :cond_0
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v7, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ".png"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .local v0, customCameraFileName:Ljava/lang/String;
+    invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_0
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_0
+
+    const-string v2, "com.baidu.camera.png"
+
+    move-object v3, v2
+
+    .end local v0           #customCameraFileName:Ljava/lang/String;
+    .end local v2           #customFileName:Ljava/lang/String;
+    .local v3, customFileName:Ljava/lang/String;
+    :goto_1
+    return-object v3
+
+    .end local v3           #customFileName:Ljava/lang/String;
+    .restart local v2       #customFileName:Ljava/lang/String;
+    :cond_0
+    invoke-static {v5}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v7
+
+    if-nez v7, :cond_1
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v7, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    const-string v8, ".png"
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    .local v4, customFmRadioFileName:Ljava/lang/String;
+    invoke-virtual {p1, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_1
+
+    invoke-virtual {p0, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_1
+
+    const-string v2, "com.baidu.fm.png"
+
+    move-object v3, v2
+
+    .end local v2           #customFileName:Ljava/lang/String;
+    .restart local v3       #customFileName:Ljava/lang/String;
+    goto :goto_1
+
+    .end local v3           #customFileName:Ljava/lang/String;
+    .end local v4           #customFmRadioFileName:Ljava/lang/String;
+    .restart local v2       #customFileName:Ljava/lang/String;
+    :cond_1
+    move-object v3, v2
+
+    .end local v2           #customFileName:Ljava/lang/String;
+    .restart local v3       #customFileName:Ljava/lang/String;
+    goto :goto_1
+
+    .end local v3           #customFileName:Ljava/lang/String;
+    .restart local v2       #customFileName:Ljava/lang/String;
+    :catch_0
+    move-exception v7
+
+    goto :goto_0
 .end method
