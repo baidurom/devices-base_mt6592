@@ -30,6 +30,8 @@
 
 3. 最新的mtk6592的底包：
 
+   ROM67: http://pan.baidu.com/s/1eQeVTJ0
+
    ROM66: http://pan.baidu.com/s/1pJDPjF9
 
    ROM65: http://pan.baidu.com/s/1sj5DhNJ
